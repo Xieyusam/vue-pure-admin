@@ -16,7 +16,7 @@ const tabsRouter = {
     {
       path: "/tabs/index",
       name: "reTabs",
-      component: () => import("/@/views/tabs/index.vue"),
+      component: () => import("../../views/tabs/index/index.vue"),
       meta: {
         title: "message.hstabs",
         showLink: true,

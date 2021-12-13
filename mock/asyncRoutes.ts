@@ -70,6 +70,42 @@ const permissionRouter = {
   ]
 };
 
+const tabsRouter = {
+  path: "/tabs",
+  name: "reTabs",
+  redirect: "/tabs/index",
+  meta: {
+    icon: "IF-team-icontabs",
+    title: "message.hstabs",
+    i18n: true,
+    showLink: true,
+    rank: 8
+  },
+  children: [
+    {
+      path: "/tabs/index",
+      name: "reTabs",
+      meta: {
+        title: "message.hstabs",
+        showLink: true,
+        i18n: true
+      }
+    },
+    {
+      path: "/tabs/detail/:id",
+      name: "tabDetail",
+      meta: {
+        title: "",
+        showLink: false,
+        i18n: false,
+        dynamicLevel: 3,
+        realPath: "/tabs/detail",
+        refreshRedirect: "/tabs/index"
+      }
+    }
+  ]
+};
+
 // 添加不同按钮权限到/permission/button页面中
 function setDifAuthority(authority, routes) {
   routes.children[1].meta.authority = [authority];
@@ -84,7 +120,11 @@ export default [
       if (query.name === "admin") {
         return {
           code: 0,
-          info: [systemRouter, setDifAuthority("v-admin", permissionRouter)]
+          info: [
+            tabsRouter,
+            systemRouter,
+            setDifAuthority("v-admin", permissionRouter)
+          ]
         };
       } else {
         return {
